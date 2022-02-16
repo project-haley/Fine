@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BugTrackerTry.Services
+namespace Fine.Services
 {
     public class DataService
     {
@@ -35,9 +35,6 @@ namespace BugTrackerTry.Services
 
             // 2: Seed a few users into the system
             await SeedUsersAsync();
-
-            // 3: Seed ChatHistory
-            await SeedChatHistory();
         }
 
         private async Task SeedRolesAsync()
@@ -89,18 +86,6 @@ namespace BugTrackerTry.Services
 
             // another user
             await _userManager.AddToRoleAsync(testUser, ChatRoles.User.ToString());
-        }
-
-        private async Task SeedChatHistory()
-        {
-            if (_dbContext.ChatHistories.Any())
-            {
-                return;
-            }
-
-            var chatHistory = new ChatHistory();
-            await _dbContext.AddAsync(chatHistory);
-            await _dbContext.SaveChangesAsync();
         }
     }
 }

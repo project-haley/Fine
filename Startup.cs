@@ -16,7 +16,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using SignalRChat.Hubs;
 using Fine.Services;
-using BugTrackerTry.Services;
 
 namespace Fine
 {
@@ -32,10 +31,15 @@ namespace Fine
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Default config
             //services.AddDbContext<ApplicationDbContext>(options =>
             //    options.UseSqlServer(
             //        Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseNpgsql(DataUtility.GetConnectionString(Configuration)));
+
+            //working config on MSSQL
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     DataUtility.GetConnectionString(Configuration)));
