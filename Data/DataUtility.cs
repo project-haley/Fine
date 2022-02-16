@@ -39,6 +39,8 @@ namespace Fine.Data
             //    TrustServerCertificate = true
             //};
 
+            //initial
+
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(databaseUrl);
 
             return builder.ToString();
