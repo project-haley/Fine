@@ -28,20 +28,18 @@ namespace Fine.Data
             var userInfo = databaseUri.UserInfo.Split(':');
 
             //Required for Npgsql integration with external service
-            //var builder = new NpgsqlConnectionStringBuilder
-            //{
-            //    Host = databaseUri.Host,
-            //    Port = databaseUri.Port,
-            //    Username = userInfo[0],
-            //    Password = userInfo[1],
-            //    Database = databaseUri.LocalPath.TrimStart('/'),
-            //    SslMode = SslMode.Prefer,
-            //    TrustServerCertificate = true
-            //};
+            var builder = new NpgsqlConnectionStringBuilder
+            {
+                Host = databaseUri.Host,
+                Port = databaseUri.Port,
+                Username = userInfo[0],
+                Password = userInfo[1],
+                Database = databaseUri.LocalPath.TrimStart('/'),
+                SslMode = SslMode.Prefer,
+                TrustServerCertificate = true
+            };
 
             //initial
-
-            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(databaseUrl);
 
             return builder.ToString();
         }
