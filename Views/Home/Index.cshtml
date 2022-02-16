@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Fine.Models.Message>
+
+<div class="container border rounded mb-3 chatHistory" id="chatContainer">
+
+    @foreach (var message in Model)
+    {
+        if (Context.User.Identity.Name == message.ChatUser.DisplayName)
+        {
+            <div class="row mt-3 mb-3 justify-content-end">
+                <div class="col-5 mr-1">
+                    
+                </div>
+                <div class="col-5 rounded ml-5 mr-3 p-3 bg-info text-white">
+                    @message.ChatUser.DisplayName : @message.Text
+                </div>
+            </div>
+        } else 
+        { 
+        <div class="row mt-3 mb-3 justify-content-start">
+            <div class="col-5 rounded ml-3 mr-5 p-3 bg-success text-white">
+                @message.ChatUser.DisplayName : @message.Text
+            </div>
+            <div class="col-5 ml-1">
+                @*empty col*@
+            </div>   
+        </div>
+        }
+        
+    }
+
+    <div class="row" id="">
+        @*JS-injected chat messages*@
+    </div>
+</div>
+
+    
+
+@*Compose and send*@
+<div class="container">
+    <input type="text" id="userInput" value="@User.Identity.Name" readonly hidden />
+    <div class="row">
+        <div class="col-11">
+            <input type="text" class="form-control" id="messageInput" />
+        </div>
+        <div class="col-1">
+            <button type="button" class="btn btn-outline-dark" id="sendButton"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <hr />
+    </div>
+</div>
+
+
+<script src="/js/signalr/dist/browser/signalr.js"></script>
+<script src="/js/chat.js"></script>
