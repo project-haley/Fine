@@ -40,9 +40,9 @@ namespace Fine
                 options.UseNpgsql(DataUtility.GetConnectionString(Configuration)));
 
             //working config on MSSQL
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    DataUtility.GetConnectionString(Configuration)));
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseSqlServer(
+            //        DataUtility.GetConnectionString(Configuration)));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
